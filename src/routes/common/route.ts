@@ -1,6 +1,6 @@
-import { factory } from '~/factory.js';
-import { faker } from '~/lib/faker.js';
-import { result } from '~/lib/result.js';
+import { factory } from '../../factory.js';
+import { faker } from '../../lib/faker.js';
+import { result } from '../../lib/result.js';
 
 const createMobile = () => `1${faker.string.numeric({ length: 10 })}`;
 

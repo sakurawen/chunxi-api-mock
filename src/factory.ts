@@ -1,4 +1,4 @@
-import type { Env } from '~/env.js';
+import type { Env } from './env.js';
 import {} from 'hono';
 import { createFactory } from 'hono/factory';
 

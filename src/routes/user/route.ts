@@ -1,6 +1,6 @@
-import { factory } from '~/factory.js';
-import { faker } from '~/lib/faker.js';
-import { result } from '~/lib/result.js';
+import { factory } from '../../factory.js';
+import { faker } from '../../lib/faker.js';
+import { result } from '../../lib/result.js';
 
 export const userRouter = factory.createApp();
 
