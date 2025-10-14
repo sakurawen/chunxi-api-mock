@@ -7,7 +7,7 @@ import { hospitalRouter } from './routes/hospital/route.js';
 import { patientRouter } from './routes/patient/route.js';
 import { userRouter } from './routes/user/route.js';
 
-const app = new Hono().use(cors({
+const app = new Hono().use('*', cors({
   origin: '*',
   allowHeaders: ['Content-Type', 'Authorization'],
   allowMethods: ['POST', 'GET', 'OPTIONS'],
