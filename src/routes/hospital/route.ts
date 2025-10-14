@@ -34,8 +34,8 @@ function createHospitalStore() {
     labels,
     distance: `${faker.number.float({ min: 0.3, max: 20, fractionDigits: 1 }).toFixed(1)}km`,
     recentVisit: faker.helpers.arrayElement([0, 1]),
-    latitude: Number(faker.location.latitude({ precision: 0.0001 }).toFixed(4)),
-    longitude: Number(faker.location.longitude({ precision: 0.0001 }).toFixed(4)),
+    latitude: Number(faker.location.latitude().toFixed(4)),
+    longitude: Number(faker.location.longitude().toFixed(4)),
     description: faker.lorem.sentences(2),
   };
 }
