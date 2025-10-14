@@ -1,35 +1,28 @@
 import { factory } from '~/factory.js';
 import { faker } from '~/lib/faker.js';
 import { result } from '~/lib/result.js';
-
 export const userRouter = factory.createApp();
-
 const createMobile = () => `1${faker.string.numeric({ length: 10 })}`;
-
-function booleanResponse(message: string) {
-  return result({}, {
-    data: true,
-    message,
-  });
+function booleanResponse(message) {
+    return result({}, {
+        data: true,
+        message,
+    });
 }
-
 userRouter.get('/wechat/login', (c) => {
-  const res = result({}, {
-    data: faker.string.uuid(),
-    message: '登录成功',
-  });
-  return c.json(res);
+    const res = result({}, {
+        data: faker.string.uuid(),
+        message: '登录成功',
+    });
+    return c.json(res);
 });
-
 userRouter.get('/wechat/getUserPhoneNumber', (c) => {
-  const res = result({}, {
-    data: true,
-    phoneNumber: createMobile(),
-    message: '手机号获取成功',
-  });
-  return c.json(res);
+    const res = result({}, {
+        data: true,
+        phoneNumber: createMobile(),
+        message: '手机号获取成功',
+    });
+    return c.json(res);
 });
-
 userRouter.get('/logout', c => c.json(booleanResponse('退出成功')));
-
 userRouter.post('/verifyCaptcha', c => c.json(booleanResponse('验证码验证成功')));
