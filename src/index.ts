@@ -7,14 +7,9 @@ import { hospitalRouter } from './routes/hospital/route.js';
 import { patientRouter } from './routes/patient/route.js';
 import { userRouter } from './routes/user/route.js';
 
-const app = new Hono().use('*', cors({
-  origin: '*',
-  allowHeaders: ['Content-Type', 'Authorization'],
-  allowMethods: ['POST', 'GET', 'OPTIONS'],
-  exposeHeaders: ['Content-Length'],
-  maxAge: 600,
-  credentials: true,
-})).route('/common', commonRouter).route('/patient', patientRouter).route('/hospital', hospitalRouter).route('/user', userRouter).route('/emr', emrRouter);
+const app = new Hono();
+app.use('*', cors());
+app.route('/common', commonRouter).route('/patient', patientRouter).route('/hospital', hospitalRouter).route('/user', userRouter).route('/emr', emrRouter);
 
 serve({
   fetch: app.fetch,
