@@ -2,8 +2,6 @@ import { factory } from '../../factory.js';
 import { faker } from '../../lib/faker.js';
 import { result } from '../../lib/result.js';
 
-export const userRouter = factory.createApp();
-
 const createMobile = () => `1${faker.string.numeric({ length: 10 })}`;
 
 function booleanResponse(message: string) {
@@ -13,7 +11,8 @@ function booleanResponse(message: string) {
   });
 }
 
-userRouter.post('/user/modify', (c) => {
+export const userRouter = factory.createApp();
+userRouter.post('/modify', (c) => {
   return c.json(result({}, { data: true }));
 });
 
