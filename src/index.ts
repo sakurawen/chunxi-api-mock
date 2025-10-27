@@ -9,6 +9,7 @@ import { userRouter } from './routes/user/route.js';
 
 const app = new Hono();
 app.use('*', cors());
+app.get('/', c => c.json({ message: 'API is running' }));
 app.route('/common', commonRouter).route('/patient', patientRouter).route('/hospital', hospitalRouter).route('/user', userRouter).route('/emr', emrRouter);
 
 serve({
