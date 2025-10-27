@@ -1,26 +1,22 @@
-# syntax=docker/dockerfile:1
+FROM node:20-alpine
 
-FROM node:20-alpine AS base
 WORKDIR /app
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
+
+# 启用 pnpm
 RUN corepack enable
 
-FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
-
-FROM base AS build
-COPY package.json pnpm-lock.yaml tsconfig.json ./
+# 复制项目文件
+COPY package.json ./
+COPY tsconfig.json ./
 COPY src ./src
-COPY --from=deps /app/node_modules ./node_modules
+
+# 安装依赖并构建
+RUN pnpm install
 RUN pnpm run build
 
-FROM base AS runner
-ENV NODE_ENV=production
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod
-COPY --from=build /app/dist ./dist
+# 清理开发依赖，只保留生产依赖
+RUN pnpm install --prod
 
 EXPOSE 3000
+
 CMD ["node", "dist/index.js"]
