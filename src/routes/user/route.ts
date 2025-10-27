@@ -13,9 +13,18 @@ function booleanResponse(message: string) {
   });
 }
 
-userRouter.get('/wechat/login', (c) => {
+userRouter.post('/user/modify', (c) => {
+  return c.json(result({}, { data: true }));
+});
+
+userRouter.post('/wechat/login', (c) => {
   const res = result({}, {
-    data: faker.string.uuid(),
+    data: {
+      token: faker.string.uuid(),
+      phoneNumber: createMobile(),
+      photoUrl: faker.image.avatar(),
+      nickName: faker.person.firstName(),
+    },
     message: '登录成功',
   });
   return c.json(res);
@@ -31,5 +40,6 @@ userRouter.get('/wechat/getUserPhoneNumber', (c) => {
 });
 
 userRouter.get('/logout', c => c.json(booleanResponse('退出成功')));
+userRouter.get('/cancel', c => c.json(booleanResponse('注销成功')));
 
 userRouter.post('/verifyCaptcha', c => c.json(booleanResponse('验证码验证成功')));
