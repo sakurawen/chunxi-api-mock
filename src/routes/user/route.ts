@@ -23,6 +23,9 @@ userRouter.post('/wechat/login', (c) => {
       phoneNumber: createMobile(),
       photoUrl: faker.image.avatar(),
       nickName: faker.person.firstName(),
+      sex: faker.helpers.arrayElement(['male', 'female', 'other']),
+      birthday: faker.date.past().toISOString().split('T')[0],
+      chunxiHealthId: faker.string.uuid(),
     },
     message: '登录成功',
   });
